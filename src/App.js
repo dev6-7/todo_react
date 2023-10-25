@@ -1,22 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
+import { PostRequest } from './componets/PostRequest';
+import { TaskForm } from './componets/TaskForm';
+import { AllTasks } from './componets/AllTasks';
 
+//Shift + option + F
 function App() {
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Task creating Form</h1>
+        <TaskForm refreshComponent={AllTasks.forceUpdate}/>
       </header>
     </div>
   );

@@ -24,6 +24,15 @@
   color: white;
 }
 
+/* CSS to make the button bigger */
+.bigger-button {
+  width: 200px; /* Set the desired width */
+  height: 60px; /* Set the desired height */
+  font-size: 24px; /* Increase the font size for text */
+  background-color: black; /* Set the background color to black */
+  color: white; /* Set the text color to white */
+}
+
 .App-link {
   color: #61dafb;
 }
