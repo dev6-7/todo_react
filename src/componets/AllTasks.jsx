@@ -4,10 +4,13 @@ class AllTasks extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { tasks: [], reRender: false };
+        this.state = {
+            tasks: [],
+            shouldRerender: false
+        };
     }
 
-    refreshComponent() {
+    getTasks() {
         const requestOptions = {
             method: 'GET',
             headers: {
@@ -19,24 +22,19 @@ class AllTasks extends React.Component {
         fetch('http://localhost:8080/v1/api/task', requestOptions)
             .then(response => response.json())
             .then(data => this.setState({ tasks: data }));
-    };
+        
+        this.state.shouldRerender = false;
+    }
 
     componentDidMount() {
-        const requestOptions = {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            }
-        };
-        fetch('http://localhost:8080/v1/api/task', requestOptions)
-            .then(response => response.json())
-            .then(data => this.setState({ tasks: data }));
+        this.getTasks();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        this.getTasks();
     }
 
     render() {
-
         return (
             <div>
                 <h1>Task list</h1>

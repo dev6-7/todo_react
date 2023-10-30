@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
-import { AllTasks } from './AllTasks';
 
-const TaskForm = () => {
+const TaskForm = ({ triggerRerender }) => {
     const [formData, setFormData] = useState({
         name: '',
         description: '',
     });
-
-    const [reRender, setReRender] = useState(false);
-    const triggerRerender = () => {
-        setReRender(!reRender);
-    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -35,6 +29,7 @@ const TaskForm = () => {
             if (response.ok) {
                 // Handle success (e.g., reset the form or navigate to a success page)
                 console.log('Form data sent successfully.');
+                triggerRerender();
             } else {
                 // Handle error
                 console.error('API request failed');
@@ -43,31 +38,29 @@ const TaskForm = () => {
             // Handle network or request error
             console.error('Network error:', error);
         }
-        triggerRerender();
     };
     return (
         <div>
-            <div>{<AllTasks reRender={reRender} />}</div>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="name">Name:</label>
                 <input
                     type="text"
                     name="name"
-                    id = "name"
+                    id="name"
                     autoComplete="off"
                     value={formData.name}
                     onChange={handleChange}
-                /><br/>
+                /><br />
 
                 <label htmlFor="description">Description:</label>
                 <input
                     type="text"
                     name="description"
-                    id = "description"
+                    id="description"
                     autoComplete="off"
                     value={formData.description}
                     onChange={handleChange}
-                /><br/>
+                /><br />
 
                 <button type="submit" className="bigger-button">Save</button>
             </form>
@@ -75,4 +68,4 @@ const TaskForm = () => {
     );
 };
 
-export {TaskForm};
+export { TaskForm };

@@ -1,17 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
-import { PostRequest } from './componets/PostRequest';
+import React, { useState } from 'react';
 import { TaskForm } from './componets/TaskForm';
 import { AllTasks } from './componets/AllTasks';
 
-//Shift + option + F
+//Shift + option + F -> format code
 function App() {
+  const [shouldRerender, setShouldRerender] = useState(true);
+
+  // Function to trigger re-render in Component AllTasks
+  const triggerRerender = () => {
+    setShouldRerender(!shouldRerender);
+  };
 
   return (
     <div className="App">
       <header className="App-header">
         <h1>Task creating Form</h1>
-        <TaskForm refreshComponent={AllTasks.forceUpdate}/>
+        <TaskForm triggerRerender={triggerRerender} />
+        <AllTasks shouldRerender={shouldRerender} />
       </header>
     </div>
   );
