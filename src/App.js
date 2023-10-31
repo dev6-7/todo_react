@@ -2,6 +2,7 @@ import './App.css';
 import React, { useState } from 'react';
 import { TaskForm } from './componets/TaskForm';
 import { AllTasks } from './componets/AllTasks';
+import { Table } from './componets/Table';
 
 //Shift + option + F -> format code
 function App() {
@@ -17,10 +18,11 @@ function App() {
       <header className="App-header">
         <h1>Task creating Form</h1>
         <TaskForm triggerRerender={triggerRerender} />
-        <AllTasks shouldRerender={shouldRerender} />
+        <Table shouldRerender={shouldRerender} />
       </header>
     </div>
   );
 }
+//<AllTasks shouldRerender={shouldRerender} />
 
 export default App;
